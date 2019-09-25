@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    private Rigidbody player;
     private Animator animator;
     public float speed = 5;
     int floorMask;
@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         floorMask = LayerMask.GetMask("Floor");
-        rigidbody = GetComponent<Rigidbody>();
+        player = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         Vector3 movementNormalized = new Vector3(horizontal, 0, vertical);
         movementNormalized = movementNormalized * speed * Time.deltaTime;
 
-        rigidbody.MovePosition(transform.position + movementNormalized);
+        player.MovePosition(transform.position + movementNormalized);
     }
 
     void Animation(float horizontal, float vertical)
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 
             Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
 
-            rigidbody.MoveRotation(newRotation);
+            player.MoveRotation(newRotation);
         }
     }
 }
